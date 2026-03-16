@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Kreator Baru</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Awalnya disembunyikan agar aman */
+        body {
+            display: flex; 
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212; 
+            color: white;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .admin-card {
+            background: #1e1e1e;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 20px; 
+            border: 1px solid #333;
+            align-self: flex-start;
+        }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-size: 0.8rem; margin-bottom: 5px; color: #aaa; }
+        input, textarea, select {
+            width: 100%; padding: 12px; background: #2a2a2a;
+            border: 1px solid #444; border-radius: 10px; color: white;
+            box-sizing: border-box; font-family: inherit;
+        }
+        button {
+            width: 100%; padding: 12px; background: #0095f6; 
+            color: white; font-weight: 600; border: none;
+            border-radius: 10px; cursor: pointer; margin-top: 10px;
+        }
+        .next-btn {
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 12px 20px; background: rgba(255,255,255,0.05); 
+            color: #0095f6; text-decoration: none; border-radius: 12px;
+            margin-top: 20px; border: 1px solid rgba(0,149,246,0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="admin-card">
+    <h2 style="text-align:center">Post Karya Baru</h2>
+    <form id="uploadForm">
+        <div class="form-group"><label>ID Kreator</label><input type="text" id="creator_id" required></div>
+        <div class="form-group"><label>Nama Kreator</label><input type="text" id="name" required></div>
+        <div class="form-group">
+            <label>Kategori</label>
+            <select id="category" required>
+                <option value="karya">Karya</option>
+                <option value="prestasi">Prestasi</option>
+                <option value="photography">Photography</option>
+                <option value="mountain">Mountain</option>
+            </select>
+        </div>
+        <div class="form-group"><label>Link Foto</label><input type="url" id="image_url" required></div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+            <input type="text" id="date_day" placeholder="22Feb" required>
+            <input type="text" id="date_year" placeholder="2026" required>
+        </div>
+        <div class="form-group" style="margin-top:10px;"><label>Rating</label><input type="number" id="rating" step="0.1" required></div>
+        <div class="form-group"><label>Bio</label><textarea id="bio" rows="2"></textarea></div>
+        <button type="submit" id="submitBtn">Posting Sekarang</button>
+    </form>
+    <div id="statusMsg" style="display:none; margin-top:10px; padding:10px; border-radius:10px; text-align:center; font-size:0.8rem"></div>
+    <a href="bioadmin.html" class="next-btn">Lanjut ke Biodata ➔</a>
+</div>
+
+<script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
+
+    const supabaseUrl = 'https://hqetnqnvmdxdgfnnluew.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxZXRucW52bWR4ZGdmbm5sdWV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3MzUyODIsImV4cCI6MjA4NzMxMTI4Mn0.Cr9lDBZMqfeONi1dfyFzHpBtawBzZTQLBEWKmPJVAOA'
+    const supabase = createClient(supabaseUrl, supabaseKey)
+
+    // LOGIKA UPLOAD
+    const form = document.getElementById('uploadForm');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const status = document.getElementById('statusMsg');
+        btn.disabled = true;
+        btn.innerText = "Processing...";
+
+        const payload = {
+            creator_id: document.getElementById('creator_id').value,
+            name: document.getElementById('name').value,
+            category: document.getElementById('category').value,
+            image_url: document.getElementById('image_url').value,
+            date_day: document.getElementById('date_day').value,
+            date_year: document.getElementById('date_year').value,
+            rating: parseFloat(document.getElementById('rating').value),
+            bio: document.getElementById('bio').value
+        };
+
+        const { error } = await supabase.from('posts').insert([payload]);
+        
+        status.style.display = "block";
+        if (error) {
+            status.style.background = "#442222";
+            status.innerText = "Gagal: " + error.message;
+        } else {
+            status.style.background = "#224422";
+            status.innerText = "Berhasil!";
+            form.reset();
+        }
+        btn.disabled = false;
+        btn.innerText = "Posting Sekarang";
+    });
+</script>
+
+</body>
+</html>

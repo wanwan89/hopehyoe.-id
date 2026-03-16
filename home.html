@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HelloHope-web</title>
+
+    <script type="text/javascript"
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-client-key="SB-Mid-client-G2wOVrrTwcffYhkC"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="css/home.css" />
+
+    <script src="js/home.js" defer></script>
+    </head>
+    <body>
+        <div class="loader"></div>
+        <audio id="audio-player"></audio>
+        <iframe src="music.html" style="display: none"></iframe>
+
+        <div class="grid-bg"></div>
+
+        <div class="container">
+            <header>
+                <div class="hello-wrapper">
+                   <div class="hello-text">
+<div class="user-profile">
+
+<img class="profile-avatar" id="avatar" src="asets/profile.png" alt="User">
+    <span class="username" id="username">Guest</span>
+
+<div class="avatar-menu" id="avatarMenu">
+
+<img src="asets/avatar1.png" class="avatar-choice">
+<img src="asets/avatar2.png" class="avatar-choice">
+<img src="asets/avatar3.png" class="avatar-choice">
+<img src="asets/avatar4.png" class="avatar-choice">
+    <button id="settingsBtn">Settings</button>
+
+
+<button id="logoutBtn">Logout</button>
+
+</div>
+
+</div>
+ 
+                        <h1 class="logo-wrapper">
+                            <span class="logo-flip">
+                                <span class="front">let's</span>
+                                <span class="back">grow with hope!</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+<div class="header-actions" style="display: flex; align-items: center; gap: 10px;">
+    <button class="button-pro" id="buyVerified">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 24" style="width: 20px; fill: #f09f33;">
+        <path d="m18 0 8 12 10-8-4 20H4L0 4l10 8 8-12z"></path>
+      </svg>
+      <span style="color: white; font-weight: bold; font-size: 12px;">PRO</span>
+    </button>
+
+    <label class="switch">
+        <input type="checkbox" class="toggle toggle-dark" />
+        <span class="slider"></span>
+    </label>
+</div>
+            </header>
+
+            <!-- JOB TYPE -->
+            <div class="job-types">
+                <div class="job-card karya-card">
+                    <div class="job-card-text">
+                        <a href="post.html" class="button" id="artButton">
+                            <div class="bgContainer">
+                                <span>Hope</span>
+                                <span>ART</span>
+                            </div>
+                            <div class="arrowContainer">
+                                <svg
+                                    width="25"
+                                    height="25"
+                                    viewBox="0 0 45 38"
+                                    fill="none"
+                                >
+                                    <path
+                                        d="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5L42 21.5V16.5L0 16.5L0 21.5Z"
+                                        fill="black"
+                                    />
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="job-card music-card">
+                    <div class="job-card-text">
+                        <a href="music.html" class="button">
+                            <div class="bgContainer">
+                                <span>Hope</span>
+                                <span>SONG</span>
+                            </div>
+                            <div class="arrowContainer">
+                                <svg
+                                    width="25"
+                                    height="25"
+                                    viewBox="0 0 45 38"
+                                    fill="none"
+                                >
+                                    <path
+                                        d="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5L42 21.5V16.5L0 16.5L0 21.5Z"
+                                        fill="black"
+                                    />
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GAMES -->
+            <section>
+                <div class="section-header">
+                    <h3>Hopers</h3>
+                </div>
+
+                <a href="chat.html" class="recent-card zodiac-card">
+                    <div class="logo zodiac-logo"></div>
+                    <div class="details">
+                        <h4>HOPETALK</h4>
+                    </div>
+                </a>
+
+                <a
+                    href="https://saweria.co/myhopehype"
+                    target="_blank"
+                    class="recent-card sawer-link"
+                >
+                    <div class="logo saweria-logo">
+                        <img src="asets/saweria.png" alt="Saweria" />
+                    </div>
+                    <div class="details">
+                        <h4>SAWER ME</h4>
+                    </div>
+                </a>
+            </section>
+        </div>
+        <script>
+            window.__lc = window.__lc || {};
+            window.__lc.license = 19516665;
+            window.__lc.integration_name = "manual_channels";
+            window.__lc.product_name = "livechat";
+            (function (n, t, c) {
+                function i(n) {
+                    return e._h ? e._h.apply(null, n) : e._q.push(n);
+                }
+                var e = {
+                    _q: [],
+                    _h: null,
+                    _v: "2.0",
+                    on: function () {
+                        i(["on", c.call(arguments)]);
+                    },
+                    once: function () {
+                        i(["once", c.call(arguments)]);
+                    },
+                    off: function () {
+                        i(["off", c.call(arguments)]);
+                    },
+                    get: function () {
+                        if (!e._h)
+                            throw new Error(
+                                "[LiveChatWidget] You can't use getters before load."
+                            );
+                        return i(["get", c.call(arguments)]);
+                    },
+                    call: function () {
+                        i(["call", c.call(arguments)]);
+                    },
+                    init: function () {
+                        var n = t.createElement("script");
+                        ((n.async = !0),
+                            (n.type = "text/javascript"),
+                            (n.src = "https://cdn.livechatinc.com/tracking.js"),
+                            t.head.appendChild(n));
+                    }
+                };
+                (!n.__lc.asyncInit && e.init(),
+                    (n.LiveChatWidget = n.LiveChatWidget || e));
+            })(window, document, [].slice);
+        </script>
+        <div id="story-label">CS HERE</div>
+<div id="settingsModal" class="modal">
+  <div class="modal-content">
+    <span id="closeSettings">X</span>
+    <input id="newUsername" placeholder="New username">
+    <div id="avatarOptions">
+      <img class="avatar-choice" src="asets/avatar1.png">
+      <img class="avatar-choice" src="asets/avatar2.png">
+<img class="avatar-choice" src="asets/avatar3.png">
+      <img class="avatar-choice" src="asets/avatar4.png">
+    </div>
+<label for="avatarUpload" style="cursor:pointer; display:block; margin:10px 0; color:#fff;">
+  Upload Avatar
+</label>
+<label for="avatarUpload" class="upload-avatar-label">
+  <img id="avatarPreview" src="asets/up.png" alt="Avatar">
+</label>
+<input type="file" id="avatarUpload" accept="image/*" style="display:none;">
+<button id="saveSettings">Save</button>
+</div>
+</div>
+<div id="vip-bottom-sheet" class="bottom-sheet">
+  <div class="sheet-overlay"></div>
+  <div class="sheet-content">
+    <div class="drag-handle"></div>
+    <h3>Pilih Paket Badge VIP</h3>
+    
+<div class="product-list">
+  <div class="product-card" data-price="30000" data-role="verified">
+    <div class="product-info-wrapper">
+      <div class="product-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" style="vertical-align:middle;">
+          <circle cx="12" cy="12" r="10" fill="#1DA1F2"/>
+          <path d="M7 12.5l3 3 7-7" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="product-text">
+        <span class="p-name">Verified Badge</span>
+        <span class="p-price">Rp 30.000/Bulan</span>
+      </div>
+    </div>
+    <button class="buy-now-btn">Beli</button>
+  </div>
+  <div class="product-card" data-price="14999" data-role="crown1">
+    <div class="product-info-wrapper">
+      <div class="product-icon">
+        <img src="asets/crown1.png" alt="Bronze" class="crown-img">
+      </div>
+      <div class="product-text">
+        <span class="p-name">Crown Bronze</span>
+        <span class="p-price">Rp 14.999/Bulan</span>
+      </div>
+    </div>
+    <button class="buy-now-btn">Beli</button>
+  </div>
+
+  <div class="product-card" data-price="20000" data-role="crown2">
+    <div class="product-info-wrapper">
+      <div class="product-icon">
+        <img src="asets/crown2.png" alt="Silver" class="crown-img">
+      </div>
+      <div class="product-text">
+        <span class="p-name">Crown Silver</span>
+        <span class="p-price">Rp 20.000/Bulan</span>
+      </div>
+    </div>
+    <button class="buy-now-btn">Beli</button>
+  </div>
+
+  <div class="product-card gold-card" data-price="49999" data-role="crown3">
+    <div class="product-info-wrapper">
+      <div class="product-icon">
+        <img src="asets/crown3.png" alt="Gold" class="crown-img">
+      </div>
+      <div class="product-text">
+        <span class="p-name">Crown Gold</span>
+        <span class="p-price">Rp 49.999/Bulan</span>
+      </div>
+    </div>
+    <button class="buy-now-btn">Beli</button>
+  </div>
+</div>
+
+  </div>
+</div>
+    </body>
+</html>

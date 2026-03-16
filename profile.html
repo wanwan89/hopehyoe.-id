@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artist Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0; padding:0; box-sizing:border-box;}
+body{
+  font-family:'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+  color:#fff;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:20px;
+  transition: background 0.5s ease;
+  position: relative;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  backdrop-filter: blur(80px);
+  z-index:-1;
+}
+header{
+  text-align:center;
+  margin-bottom:40px;
+  width:100%;
+  max-width:500px;
+  padding:20px;
+  background: rgba(30,30,30,0.5);
+  border-radius:20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(15px);
+  transition: transform 0.3s ease;
+}
+header:hover{
+  transform: translateY(-5px);
+}
+
+header img{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #1E33F5;
+  margin-bottom:15px;
+  transition: transform 0.3s ease;
+}
+header img:hover{
+  transform: scale(1.05);
+}
+
+header h1{
+  font-size:28px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+header h2{
+  font-size:16px;
+  font-weight:400;
+  color:#ccc;
+}
+header p{
+  font-size:14px;
+  margin-top:5px;
+  color:#aaa;
+}
+main{
+  width:100%;
+  max-width:500px;
+  background: rgba(20,20,20,0.6);
+  padding:25px;
+  border-radius:20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  line-height:1.8;
+  font-size:16px;
+  margin-bottom:30px;
+  transition: transform 0.3s ease;
+}
+main:hover{
+  transform: translateY(-3px);
+}
+
+a{
+  color:#1E33F5;
+  text-decoration:none;
+  font-weight:600;
+  margin-bottom:20px;
+  transition: 0.2s;
+}
+a:hover{
+  text-decoration:underline;
+}
+
+@media (max-width:500px){
+  header, main{
+    padding:15px;
+  }
+  header img{
+    width:140px;
+    height:140px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <img id="profileImage" src="" alt="Artist">
+  <h1 id="profileName"></h1>
+  <h2 id="profileBioShort"></h2>
+  <p id="profileGenre"></p>
+</header>
+
+<main>
+  <p id="profileBio"></p>
+</main>
+
+<a href="music.html">← Back to Music</a>
+
+<script>
+const singerData = [
+  { name:"Bruno Mars", shortBio:"Penyanyi dan produser Amerika.", fullBio:"Bruno Mars adalah penyanyi, penulis lagu, dan produser rekaman Amerika yang dikenal karena penampilan energinya dan hits yang menduduki puncak tangga lagu.", cover:"cover1.png", genre:"Pop, R&B" },
+  { name:"Troye Sivan", shortBio:"Penyanyi pop emosional Australia.", fullBio:"Troye Sivan adalah penyanyi, penulis lagu, dan aktor Australia yang terkenal karena musik pop emosionalnya.", cover:"cover2.png", genre:"Pop" },
+  { name:"Abba", shortBio:"Grup pop ikonik dari Swedia.", fullBio:"ABBA adalah grup pop asal Swedia yang dibentuk pada tahun 1972, terkenal dengan lagu-lagu catchy dan gaya ikonik.", cover:"cover3.png", genre:"Pop" },
+  { name:"Brian", shortBio:"Artis indie dengan melodi soulful.", fullBio:"Brian adalah artis indie yang dikenal karena melodi soulfulnya.", cover:"cover4.png", genre:"Indie" },
+  { name:"Arctic Monkeys", shortBio:"Band rock Inggris.", fullBio:"Arctic Monkeys adalah band rock Inggris yang dibentuk pada 2002, terkenal dengan musik indie rock energik.", cover:"cover5.png", genre:"Indie Rock" },
+  { name:"Gracie Abrams", shortBio:"Penyanyi-penulis lagu Amerika.", fullBio:"Gracie Abrams adalah penyanyi-penulis lagu Amerika yang terkenal dengan lagu-lagu pop intimnya.", cover:"cover6.png", genre:"Pop" },
+  { name:"Katty Perry", shortBio:"Ikon pop global.", fullBio:"Katy Perry adalah ikon pop global yang dikenal dengan penampilan panggung yang penuh warna.", cover:"cover7.png", genre:"Pop" },
+  { name:"Sombr", shortBio:"Artis baru musik pop alternatif.", fullBio:"Sombr adalah artis baru yang sedang naik daun di musik pop alternatif.", cover:"cover8.png", genre:"Pop alternatif" },
+  { name:"Billie eillis", shortBio:"Suara unik dan gelap.", fullBio:"Billie Eilish adalah penyanyi-penulis lagu Amerika yang dikenal dengan suara unik dan gaya pop gelapnya.", cover:"cover9.png", genre:"Pop Gelap" },
+  { name:"Radiohead", shortBio:"Band rock eksperimental Inggris.", fullBio:"Radiohead adalah band rock Inggris yang dikenal dengan musik eksperimental dan lirik kompleks.", cover:"cover10.png", genre:"Rock Eksperimental" },
+  { name:"Gigi Perez", shortBio:"Vokal soulful modern.", fullBio:"Gigi Perez adalah penyanyi berbakat yang memadukan pop modern dengan vokal soulful.", cover:"cover11.png", genre:"Pop Modern" },
+  { name:"Cigarettes After Sex", shortBio:"Band dream-pop etereal.", fullBio:"Cigarettes After Sex adalah band dream-pop yang terkenal dengan suara etereal mereka.", cover:"cover12.png", genre:"Dream Pop" },
+{
+  name: "Hope official",
+  shortBio: "Penyanyi muda yang bersemangat menciptakan lagu sederhana.",
+  fullBio: "Hope official adalah seorang penyanyi dan pencipta lagu muda berusia 25 tahun yang tengah menapaki perjalanan kreatifnya di dunia musik. Sejak kecil, ia selalu tertarik dengan melodi dan lirik yang mampu menyentuh perasaan orang lain, dan kini ia mencoba mewujudkan passion tersebut melalui karya-karya musiknya. Musik yang ia ciptakan cenderung sederhana namun sarat makna, memadukan elemen pop, alternatif, dan sentuhan emosional yang khas. Hope terlibat secara langsung dalam setiap proses kreatif, mulai dari menulis lirik, menciptakan melodi, hingga produksi akhir, agar setiap lagu benar-benar mencerminkan kepribadiannya. Melalui lagu-lagu yang ia buat, Hope berusaha mengekspresikan pengalaman sehari-hari, emosi, dan cerita hidupnya yang bisa dirasakan oleh pendengar dari berbagai latar belakang. Selain itu, ia memiliki visi untuk terus berkembang sebagai seniman muda yang orisinal, menghadirkan karya-karya musik yang tidak hanya menghibur tetapi juga menyampaikan pesan dan inspirasi. Dedikasi, ketekunan, dan rasa ingin tahu dalam bermusik membuat Hope official menjadi artis yang penuh potensi dan layak diperhitungkan di kancah musik masa kini. Profilnya mencerminkan seseorang yang gigih mengejar passion, kreatif dalam bereksperimen dengan suara, dan selalu mencari cara baru untuk berkomunikasi melalui lagu. Dengan semangat yang tinggi, Hope official berharap karya-karyanya dapat meninggalkan kesan mendalam bagi para pendengarnya dan menjadi sumber inspirasi bagi generasi muda lainnya yang juga ingin mengejar mimpi di dunia musik.",
+  cover: "cover13.png",
+  genre: "Pop Alternatif"
+}
+];
+
+//Ambil nama artis dari URL
+const params = new URLSearchParams(window.location.search);
+const artistName = params.get('artist');
+
+// Cari artis (case-insensitive + trim)
+const artist = singerData.find(s => s.name.toLowerCase().trim() === artistName?.toLowerCase().trim());
+
+if(artist){
+  document.getElementById('profileImage').src = artist.cover;
+  document.getElementById('profileName').textContent = artist.name;
+  document.getElementById('profileBioShort').textContent = artist.shortBio;
+  document.getElementById('profileBio').textContent = artist.fullBio;
+  document.getElementById('profileGenre').textContent = `Genre: ${artist.genre}`;
+} else {
+  document.getElementById('profileName').textContent = "Artist not found";
+  document.getElementById('profileBio').textContent = "";
+  document.getElementById('profileBioShort').textContent = "";
+  document.getElementById('profileGenre').textContent = "";
+}
+</script>
+
+</body>
+</html>

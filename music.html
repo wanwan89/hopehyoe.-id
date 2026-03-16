@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/music.css">
+</head>
+<body>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2> Menu</h2>
+        <span class="material-icons" id="closeSidebar">close</span>
+    </div>
+    <nav class="sidebar-nav">
+<a href="#"><span class="material-icons">whatshot</span> Trending</a>
+<a href="#"><span class="material-icons">public</span> Viral</a>
+<a href="#"><span class="material-icons">audiotrack</span> Music Indo</a>
+<hr style="border: 0.1px solid #333; margin: 15px 0;">
+
+<a href="adminmusic.html" id="adminPanelBtn" style="display: none;">
+    <span class="material-icons">admin_panel_settings</span> Admin Panel
+</a>
+
+</div>
+
+<div class="header-container">
+    <header class="music-header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <span class="material-icons" id="openSidebar" style="cursor: pointer;">menu</span>
+            <h1>Stream song</h1>
+        </div>
+<div class="profile-image">
+    <img src="asets/music.png" alt="Profile"> </div>
+
+        </div>
+    </header>
+    <div class="search-box">
+        <span class="material-icons">search</span>
+        <input type="text" id="search-input" placeholder="Search songs...">
+    </div>
+    <div class="category-tabs" id="categoryTabs">
+        <button class="active" data-cat="all">All</button>
+        <button data-cat="music">Music</button>
+        <button data-cat="hopers">Hopers</button>
+<button data-cat="playlist">Playlist</button>
+<button data-cat="tranding">Trending</button>
+<button data-cat="trend">Trend</button>
+<button data-cat="viral">Viral</button>
+    </div>
+</div>
+
+<div class="playlist-grid" id="playlistGrid">
+    <p style="text-align: center; padding: 20px;">Loading songs...</p>
+</div>
+
+<div class="mini-player" id="miniPlayer" style="display: none;">
+    <img src="" id="mini-cover">
+    <div class="player-info">
+        <h4 id="mini-title">Title</h4>
+        <p id="mini-artist">Artist</p>
+        <div class="progress-container" id="progress-container">
+            <div class="progress" id="progress"></div>
+        </div>
+    </div>
+    <div class="player-controls">
+        <span class="material-icons" id="play-btn">play_arrow</span>
+    </div>
+</div>
+
+<audio id="audio-player"></audio>
+
+<script type="module" src="js/music.js"></script>
+</body>
+</html>
