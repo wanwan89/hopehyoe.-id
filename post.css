@@ -1,0 +1,884 @@
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+/*search-wrapper*/
+body{ 
+  font-family:'Poppins', sans-serif; 
+  background:#121212; 
+  color:#e0e0e0; 
+}
+.search-wrapper{
+  position:sticky;
+  top:0;
+  z-index:999;
+  padding:15px 20px;
+  display:flex;
+  justify-content:center;
+  background:transparent;
+}
+.brutal-input-container{
+  position:relative;
+  width:100%;
+  max-width:270px;
+}
+
+.brutal-input{
+  width:100%;
+  height:60px;
+  padding:12px;
+  font-size:18px;
+  font-family:"Courier New", monospace;
+  color:#000;
+  background:#fff;
+  border:4px solid #000;
+  outline:none;
+  transition:0.3s ease;
+  box-shadow:8px 8px 0 #000;
+}
+
+/* Hover */
+.brutal-input:hover{
+  transform:translate(-4px,-4px);
+  box-shadow:12px 12px 0 #000;
+}
+
+/* Focus */
+.brutal-input:focus{
+  background:#000;
+  color:#fff;
+  border-color:#fff;
+  animation:shake 0.5s ease-in-out;
+}
+
+/* Typing glitch */
+.brutal-input:not(:placeholder-shown){
+  animation:glitch 0.7s linear infinite;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+/* Cursor line */
+.brutal-input-container::after{
+  content:"|";
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  animation:blink 0.7s step-end infinite;
+}
+
+/* Animations */
+@keyframes blink{
+  50%{opacity:0;}
+}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-5px);}
+  75%{transform:translateX(5px);}
+}
+
+@keyframes glitch{
+  0%{transform:none;}
+  20%{transform:skew(-1deg);}
+  40%{transform:skew(1deg);}
+  60%{transform:skew(-0.5deg);}
+  80%{transform:skew(0.5deg);}
+  100%{transform:none;}
+}
+
+/*POST*/
+.gallery{ 
+  max-width:420px; 
+  margin:auto; 
+  padding:10px 20px 40px; 
+}
+/* ======CARD POST======= */
+.card{ 
+  background:#1e1e1e; 
+  border-radius:16px; 
+  margin-bottom:25px; 
+  overflow:hidden; 
+  box-shadow:0 4px 15px rgba(0,0,0,0.6);
+  border:1px solid #2c2c2c;
+  display:flex;
+  flex-direction:column;
+  transition:0.2s ease;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+}
+
+
+/* ===========IMAGE =========== */
+
+.slider img{ 
+  width:100%; 
+  display:block;
+}
+
+/* ===========OVERLAY =========== */
+.overlay{ 
+  padding:15px; 
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+
+/* ================= NAME ================= */
+
+.overlay h2{ 
+  font-size:16px; 
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:#fff;
+}
+
+
+/* ================= VERIFIED ================= */
+
+.verified{
+  display:flex;
+  align-items:center;
+}
+
+.verified-icon{
+  width:16px;
+  height:16px;
+}
+
+.verified-icon circle{
+  fill:#1DA1F2;
+}
+
+.verified-icon path{
+  stroke:#fff;
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  fill:none;
+}
+
+
+/* ================= BIO ================= */
+
+.overlay p{ 
+  font-size:14px; 
+  color:#bbb;
+}
+
+
+/* ================= STATS ================= */
+
+.stats{ 
+  display:flex; 
+  gap:15px;
+  font-size:12px; 
+  color:#888;
+}
+
+
+/* ================= ACTIONS ================= */
+
+.actions{ 
+  display:flex; 
+  align-items:center;
+  justify-content:space-between;
+  margin-top:10px; 
+}
+
+.primary{ 
+  padding:7px 14px; 
+  border:none; 
+  border-radius:8px; 
+  background:#0095f6; 
+  color:#fff; 
+  font-size:13px;
+  text-decoration:none; 
+  cursor:pointer; 
+  transition:0.2s;
+}
+
+.primary:hover{
+  background:#0b84e3;
+}
+
+
+/* ================= ICON BUTTONS ================= */
+
+.icon-btn{
+  background:none;
+  border:none;
+  display:flex;
+  align-items:center;
+  gap:4px;
+  cursor:pointer;
+}
+
+.icon{
+  width:22px;
+  height:22px;
+  fill:#e0e0e0;
+  transition:0.2s;
+}
+
+.icon-btn.liked .icon {
+  fill: #ff2e63;
+}
+}
+
+.like-count,
+.comment-count{
+  font-size:13px;
+  color:#e0e0e0;
+}
+.icon{
+  width:22px;
+  height:22px;
+  fill:currentColor;
+}
+
+.icon-btn{
+  background:none;
+  border:none;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  cursor:pointer;
+  font-size:14px;
+  transition:0.2s;
+}
+
+.icon-btn:hover{
+  transform:scale(1.1);
+  opacity:0.8;
+}
+ 
+/* ===== COMMENT MODAL FIX ===== */
+
+.comment-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.7);
+  z-index: 9999;
+}
+
+.comment-modal.active {
+  display: flex !important;
+}
+
+.comment-popup {
+  background: #1a1a28;
+  padding: 20px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #2a2a3a;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.comment-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.comment-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #333;
+  font-size: 14px;
+}
+
+.close-comment {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+.like-btn.liked {
+  color: #ff2e63;
+  animation: popLike 0.3s ease;
+}
+
+@keyframes popLike {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+/* From Uiverse.io by micaelgomestavares */ 
+.form {
+  background: transparent;
+  padding: 0;
+  width: 100%;
+}
+
+::placeholder {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.form button {
+  align-self: flex-end;
+}
+
+.flex-column > label {
+  color: #151717;
+  font-weight: 600;
+}
+
+.inputForm {
+  border: 1.5px solid #ecedec;
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  transition: 0.2s ease-in-out;
+}
+
+.input {
+  margin-left: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 85%;
+  height: 100%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.inputForm:focus-within {
+  border: 1.5px solid #2d79f3;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.flex-row > div > label {
+  font-size: 14px;
+  color: black;
+  font-weight: 400;
+}
+
+.span {
+  font-size: 14px;
+  margin-left: 5px;
+  color: #2d79f3;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.button-submit {
+  margin: 20px 0 10px 0;
+  background-color: #151717;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.button-submit:hover {
+  background-color: #252727;
+}
+
+.p {
+  text-align: center;
+  color: black;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.btn {
+  margin-top: 10px;
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  gap: 10px;
+  border: 1px solid #ededef;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.btn:hover {
+  border: 1px solid #2d79f3;
+  ;
+}
+ 
+/* Popup in */
+#inPopup {
+  position: fixed;     
+  top: 0;
+  left: 0;
+  width: 100vw;         
+  height: 100vh;      
+  background: rgba(0,0,0,0.5); 
+  display: none;        
+  justify-content: center; 
+  align-items: center;     
+  z-index: 9999;      
+}
+#inPopup .popup-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 350px;
+  box-sizing: border-box;
+}
+
+#inPopup .close-popup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close-popup {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+/* ================= POPUP IN FIX ================= */
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-content {
+  background: #fff;
+  width: 90%;
+  max-width: 360px;
+  padding: 25px;
+  border-radius: 18px;
+  position: relative;
+}
+
+@keyframes popupFade {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.close-popup {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+/* BUTTON */ 
+.Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: white;
+}
+
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: black;
+}
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: 0.3s;
+}
+/* hover effect on button width */
+.Btn:hover {
+  background-color: blue;
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: 0.3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: 0.3s;
+  padding-left: 20px;
+}
+
+.Btn:hover .sign svg path {
+  fill: white;
+}
+
+/* hover effect button's text */
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: 0.3s;
+  padding-right: 10px;
+}
+/* button click effect*/
+.Btn:active {
+  transform: translate(2px, 2px);
+}
+/* ========NOTIF SIMPEL ============ */
+#notif {
+  position: fixed;
+  top: 20px;
+  right: -300px; 
+  background-color: #4facfe;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  font-weight: 500;
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 9999;
+}
+
+#notif.show {
+  right: 20px;
+  opacity: 1;
+}
+
+#notif.hide {
+  right: -300px;
+  opacity: 0;
+}
+.comment-item{
+display:flex;
+gap:10px;
+padding:8px;
+align-items:flex-start;
+}
+
+.comment-avatar{
+width:35px;
+height:35px;
+border-radius:50%;
+}
+
+.comment-body{
+display:flex;
+flex-direction:column;
+}
+
+.comment-username{
+font-weight:600;
+font-size:13px;
+color:#fff;
+}
+
+.comment-text {
+  font-size: 14px;
+  color: white;
+}
+.reply-toggle{
+  font-size:13px;
+  color:#aaa;
+  cursor:pointer;
+  margin-top:5px;
+}
+
+.reply-toggle:hover{
+  color:white;
+}
+.comment-item {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: background 0.2s;
+}
+
+.comment-item:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-right {
+  flex: 1;
+}
+
+.comment-header {
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  gap: 5px;
+}
+
+.comment-text {
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.reply-tag {
+  color: #888;
+}
+
+.comment-actions {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.reply {
+  margin-left: 50px; /* indent balasan */
+}
+.admin-badge{
+  font-size:9px;
+  color:white;
+  padding:1px 4px;
+  border-radius:4px;
+  margin-left:4px;
+  font-weight:600;
+  animation: rgbGlow 3s linear infinite;
+}
+
+@keyframes rgbGlow{
+  0%{ background: rgb(255,0,0); }
+  33%{ background: rgb(0,255,0); }
+  66%{ background: rgb(0,0,255); }
+  100%{ background: rgb(255,0,0); }
+}
+.toast-notification {
+  position: fixed;
+  top: 20px;      
+  left: 20px;      
+  background: #4facfe; 
+  color: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(-20px); 
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+.toast-notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast-notification.success {
+  background: #4facfe;
+}
+
+.toast-notification.error {
+  background: #ff4757;
+}
+:root {
+  --bg-black: #000000;
+  --bg-sidebar: #050505;
+  --accent-blue: #00a2ff;
+  --glass-white: rgba(255, 255, 255, 0.1);
+  --border-white: rgba(255, 255, 255, 0.5); /* Garis putih semi-transparan agar tidak kaku */
+}
+
+/* Wrapper Utama - Benar-benar transparan & Rapi */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: transparent; /* Full transparan */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  gap: 15px;
+}
+
+/* Garis Tiga Putih */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+/* Kotak Search Transparan */
+.brutal-input-container {
+  flex-grow: 1;
+}
+
+.brutal-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1); /* Putih tipis banget biar kelihatan kaca */
+  border: 2px solid #ffffff; /* Garis kotak putih tegas */
+  padding: 10px 15px;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  outline: none;
+  border-radius: 0; /* Tetap kotak (Brutal style) tapi transparan */
+  backdrop-filter: blur(5px); /* Efek blur halus di dalam kotak search */
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* Placeholder warna putih agak pudar */
+.brutal-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Efek saat diklik - makin terang */
+.brutal-input:focus {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #00a2ff; /* Berubah biru dikit pas ngetik */
+}
+
+/* --- Sidebar Premium --- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--bg-sidebar);
+  border-right: 1px solid rgba(255, 255, 255, 0.03);
+  z-index: 2000;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  padding: 60px 30px;
+  box-sizing: border-box;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.sidebar-logo {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 5px; /* Jarak huruf lebar ala brand mewah */
+  margin-bottom: 60px;
+  opacity: 0.8;
+}
+
+/* --- Nav Item (Teks Putih + Glow Biru Halus) --- */
+.nav-item {
+  display: block;
+  padding: 12px 0;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 300; /* Font lebih tipis agar estetik */
+  margin-bottom: 20px;
+  transition: 0.4s;
+  opacity: 0.6; /* Agak redup saat tidak aktif */
+}
+
+.nav-item:hover {
+  opacity: 1;
+  color: var(--accent-blue);
+  letter-spacing: 2px; /* Efek teks melebar sedikit saat hover */
+}
+
+.nav-item.active {
+  opacity: 1;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Dot Biru untuk menandakan menu aktif */
+.nav-item.active::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-blue);
+  border-radius: 50%;
+  margin-left: 10px;
+  box-shadow: 0 0 10px var(--accent-blue); /* Efek cahaya biru */
+}
